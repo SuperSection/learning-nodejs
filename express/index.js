@@ -1,16 +1,21 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 
+const pathDir = path.join(__dirname, "public");
+app.use(express.static(pathDir));   // always find the index file and show the result as default page
+
 app.get("/", (req, res) => {
-  res.send("Hi, this is first express route");
+  res.sendFile(`${pathDir}/index.html`);
 });
 app.get("/about", (req, res) => {
-  res.send("Here, this is first about route using express");
+  res.sendFile(`${pathDir}/home.html`);
 });
 app.get("/download", (req, res) => {
-  res.send("This is the download route using express");
+  res.download(`${pathDir}/index.html`);
 });
 
 app.listen(3000, () => {
-    console.log("Server is established on port 3000");
-})
+  console.log("Server is established on port 3000");
+});
