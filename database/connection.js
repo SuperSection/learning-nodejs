@@ -10,7 +10,29 @@ mongoose
   });
 
 const schema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  phone: {
+    type: Number,
+    unique: true,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  confirmPassword: {
+    type: String,
+    required: true,
+  }
 });
 
 const user = mongoose.model("User", schema);

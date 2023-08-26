@@ -20,7 +20,7 @@ app.post("/", async (req, res) => {
   } catch (error) {
     res.status(404).send(error);
   }
-  res.send("Love you Pagli");
+  // res.send("Love you Pagli");
 });
 
 app.get("/user", async (req, res) => {
@@ -37,6 +37,16 @@ app.get("/user/:id", async (req, res) => {
     const id = req.params.id;
     const getDataById = await user.findById({ _id: id });
     res.send(getDataById);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const userEmail = req.body.email;
+    const getEmail = await user.findOne({ email: userEmail });
+    res.send(getEmail);
   } catch (error) {
     res.status(404).send(error);
   }
